@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="index_style.css" rel="stylesheet"/>
+    <title>Add Product</title>
+</head>
+<body>
+    <h1>Product</h1>
+    <form>
+        <div class="box">
+            <div>
+                <lable>Name :</lable>
+                <input type="text" placeholder="Enter Your Product Name" id="Name"/>
+                <label id="Name_Error">Enter the Name of the Product</label>
+            </div>
+            <div class="Description">
+                <label>Description :</label>
+                <textarea placeholder="Product Description" cols="35" rows="3" id="Description" maxlength="225"></textarea>
+                <label id="Description_Error">Please Enter the Description of the Product Maximum 225 Characters</label>
+            </div>
+            <div>
+                <label>Upload Image :</label>
+                <input type="file" id="Image" onchange="Load_Image(event)"/>
+                <label id="Image_Error">Upload The Image of the Product</label>
+                <label id="Image_Type_Error">Upload File Format of JPEG, JPG & PNG</label>
+                <img src="" id="Output" style="  display: none;">
+            </div>
+            <div>
+                <label>Orginal Price :</label>
+                <input type="number" placeholder="Enter the Orginal Price" id="Orginal_Price"/>
+                <label id="Orginal_Price_Error">Enter the Orginal Price of the Product</label>
+            </div>
+            <div>
+                <label>Type:</label>   
+                <input type="button"value="Percentage" id="Percentage" onclick="Discount_Type_Generator(event)"/>
+                <span id="OR">OR</span>
+                <input type="button"value="Flat" id="Flat" onclick="Discount_Type_Generator(event)"/>
+            </div>
+            <div>
+                <lable>Discount :</lable>
+                <input type="number" placeholder="Enter the Discount" id="Discount_Value" oninput="Price_Calculator(event)"/>
+                <label id="Discount_Price_Error">Plaese Enter the Discount Value</label>
+            </div>
+            <div>
+                <label>Sales Price:</label>
+                <input type="number" value="" readonly id="Sales_Price"/>
+            </div>
+            <div>
+                <label>Quantity :</label>
+                <input type="number" max="10" id="Quantity"/>
+                <label id="Quantity_Error">Enter Quantity</label>
+                <label id="Maximum_Quantity_Error">Maximum Quantity - 10</label>
+            </div>
+            <input type="button" value="Add Product" onclick="Add_Product()"/>
+        </div>
+    </form>
+</body>
+<script>
+
+    var Discount_Type;
+    var Discount_Value;
+
+    function Load_Image(event){
+        var Image_Type = event.target.files[0].type;
+        var Image_Type_Split = Image_Type.split('/');
+        var Image_Ext = Image_Type_Split[1];
+        console.log(Image_Ext);
+        if (Image_Ext == 'jpg' || Image_Ext == 'jpeg' || Image_Ext == 'gif' || Image_Ext == 'png') {
+                    var Reader = new FileReader();
+                    Reader.onload = function(event){
+                        var Output = document.getElementById('Output');
+                        Output.src = Reader.result;
+                        localStorage.setItem("Product_Image",event.target.result);
+                    }
+                    Reader.readAsDataURL(event.target.files[0]);
+
+                    document.getElementById("Output").style="display : block; height: 300px; width: 400px; object-fit: contain;"
+        } else {
+            document.getElementById("Image_Type_Error").style="display:block";
+            document.getElementById("Image_Error").style="display:none";
+        }
+    }
+
+    function Discount_Type_Generator(event){
+        Discount_Type = event.target.id;
+        
+        if(Discount_Type=="Percentage"){
+            document.getElementById("Flat").style="display:none;";
+            document.getElementById("OR").style="display:none;";
+            document.getElementById("Discount_Value").style="display:block;";
+        }else {
+            document.getElementById("Percentage").style="display:none;";
+            document.getElementById("OR").style="display:none;";
+            document.getElementById("Discount_Value").style="display:block;";
+        }
+    }
+
+    function Price_Calculator(event){
+        Discount_Value = event.target.value;  
+        var Orginal_Price = document.getElementById("Orginal_Price").value;   
+        var Sales_Price ;
+
+        if(Discount_Type=="Percentage"){
+            Price = Orginal_Price*(Discount_Value/100);
+            Sales_Price=Orginal_Price-Price;
+            console.log(Sales_Price);
+            document.getElementById("Discount_Price_Error").style="display:none;";
+        } else {
+            Sales_Price = Orginal_Price - Discount_Value;
+            console.log(Sales_Price);
+            document.getElementById("Discount_Price_Error").style="display:none;";
+        }
+        document.getElementById("Sales_Price").value=Sales_Price;
+    }
+
+    function Add_Product(){
+        var Name = document.getElementById("Name").value;
+        var Description = document.getElementById("Description").value;
+        var Orginal_Price = document.getElementById("Orginal_Price").value;
+        var Discount_Value = document.getElementById("Discount_Value").value;
+        var Sales_Price = document.getElementById("Sales_Price").value;
+        var Quantity = document.getElementById("Quantity").value;
+        var Flag = [];
+        var True_Value = 1;
+        var False_Value = 0;
+
+            if(Name){
+                document.getElementById("Name_Error").style="display : none;";
+                localStorage.setItem("Product_Name",Name);
+                Flag.push(True_Value);
+            } else {
+                document.getElementById("Name_Error").style="display : block;";
+                Flag.push(False_Value);
+
+            }
+            if(Description){
+                localStorage.setItem("Product_Description",Description);
+                document.getElementById("Description_Error").style="display : none;";
+                Flag.push(True_Value);
+            } else {
+                document.getElementById("Description_Error").style="display : block;";
+                Flag.push(False_Value);
+
+            }
+            if(Image){
+                document.getElementById("Image_Error").style="display : none;";
+                Flag.push(True_Value);
+            } else {
+                document.getElementById("Image_Error").style="display : block;";
+                Flag.push(False_Value);
+            }
+            if(Orginal_Price){
+                localStorage.setItem("Product_Price",Orginal_Price);
+                document.getElementById("Orginal_Price_Error").style="display : none;";
+                Flag.push(True_Value);
+            } else {
+                document.getElementById("Orginal_Price_Error").style="display : block;";
+                Flag.push(False_Value);
+
+            }
+            if(Discount_Value){
+                localStorage.setItem("Product_Discount",Discount_Value);
+                document.getElementById("Discount_Price_Error").style="display : none;";
+                Flag.push(True_Value);
+            } else {
+                document.getElementById("Discount_Price_Error").style="display : block;";
+                Flag.push(False_Value);
+
+            }   
+            if(Discount_Value){
+                localStorage.setItem("Discount_Value",Discount_Value);
+                Flag.push(True_Value);
+                
+            }
+            if(Sales_Price){
+                localStorage.setItem("Selling_Price",Sales_Price);
+                Flag.push(True_Value);
+
+            }
+            if(Quantity){
+                if((Quantity < 11 )==true){            
+                    localStorage.setItem("Product_Quantity",Quantity);
+                    document.getElementById("Maximum_Quantity_Error").style="display : none;";
+                    Flag.push(True_Value);
+                } else {
+                    document.getElementById("Maximum_Quantity_Error").style="display : block;";
+                }
+                document.getElementById("Quantity_Error").style="display : none;";
+            } else {
+                document.getElementById("Quantity_Error").style="display : block;";
+            }
+
+            console.log(Flag);
+            if(Flag.every(Val => Val === 1)){
+                window.location.href = 'Product_Info.html';
+            }
+    }
+</script>
+</html>

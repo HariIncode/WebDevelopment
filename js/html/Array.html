@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Array</title>
+    </head>
+    <body>
+        <input type="button" value="Validate" onclick="Validate()">
+    </body>
+    <script>
+        function Validate(){
+            var i,Emp_Array = ['Hari','Riya','Jeeva','Prasath','Mubeena','Bhaskar','Yuvashree','Abinesh','Jeeva','Riya','Yuvashree','Mubeena'];
+            var Orginal_Array = [];
+            var i,Emp_Info = [
+                {
+                    name : 'Hari',
+                    salary : 70000,
+                    gender : 'Male',
+                    desigination : 'IT'
+                },
+                {
+                    name : 'Jeeva',
+                    salary : 65000,
+                    gender : 'Male',
+                    desigination : 'NON-IT'
+                },
+                {
+                    name : 'Priya',
+                    salary : 80000,
+                    gender : 'Female',
+                    desigination : 'IT'
+                },
+                {
+                    name : 'Mubeena',
+                    salary : 75000,
+                    gender : 'Female',
+                    desigination : 'NON-IT'
+                },
+                {
+                    name : 'Prasath',
+                    salary : 55000,
+                    gender : 'Male',
+                    desigination : 'IT'
+                },
+                {
+                    name : 'Yuvashree',
+                    salary : 75000,
+                    gender : 'Female',
+                    desigination : 'NON-IT'
+                }
+            ]
+            var Emp_Female = [];
+            var Emp_Male = [];
+// ------------------------------------------------------------------------------------------------------
+            // PUSH();
+
+            // for(i=0;i<Emp_Info.length;i++){
+            //     if(Emp_Info[i].gender == 'Male'){
+            //         Emp_Male.push(Emp_Info[i].name);
+            //     } else {
+            //         Emp_Female.push(Emp_Info[i].name);
+            //     }
+            // }
+// ------------------------------------------------------------------------------------------------------
+            //  INDEXOF();
+
+            // for(i=0; i<Emp_Array.length;i++){
+            //     if(Orginal_Array.indexOf(Emp_Array[i])== -1){
+            //         Orginal_Array.push(Emp_Array[i]);
+            //     } else {
+            //         console.log("Index--->",Orginal_Array.indexOf(Emp_Array[i]));
+            //     }
+            // }
+// ------------------------------------------------------------------------------------------------------
+            // INCLUDES();
+
+            for(i=0; i<Emp_Array.length;i++){
+                if(Orginal_Array.includes(Emp_Array[i])== false){
+                    Orginal_Array.push(Emp_Array[i]);
+                } else {
+                    console.log("Index--->",Orginal_Array.includes(Emp_Array[i]));
+                }
+            }
+            console.log(Orginal_Array);
+        }
+    </script>
+</html>

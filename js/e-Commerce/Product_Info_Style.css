@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: darkgrey;
+}
+h1{
+    text-align: center;
+    position: relative;
+    top: 30px;
+    font-size: 45px;
+    font-family: math;
+    font-weight: lighter;
+}
+.Container{
+    background-color: antiquewhite;
+    line-height: 2;
+    text-align: left;
+    width: min-content;
+    height: min-content;
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+    top: 80px;
+}
+input {
+    width: 370px;
+    height: 25px;
+}
+
+.Box{
+    padding: 5px 20px;
+}
+
+.quantity{
+    padding: inherit;
+}
+.select{
+    padding-left: 25%;
+}
+#Min_Quantity{
+    height: fit-content;
+    width: 3%;
+    direction: rtl;
+}
+#Max_Quantity{
+    height: fit-content;
+    width: 4%;
+    direction: rtl;
+}
+#Add{
+    height: fit-content;
+    width: 6%;
+    direction: rtl;
+}
+#Reduse{
+    height: fit-content;
+    width: 6%;
+    direction: rtl;
+}
+#Quantity{
+    height: fit-content;
+    width: 5%;
+    direction: rtl;
+}
+#Total_Price{
+    height: fit-content;
+    width: 20%;
+    direction: rtl;
+}
+.Total{
+    padding-left: 30%;
+}
+#Add_To_Cart{
+    width: 100%;
+    height: 25px;
+}

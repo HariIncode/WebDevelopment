@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Input</title>
+</head>
+<body>
+    <div>
+        <label>Upload the File</label>
+        <input type="file" onchange="Load_File(event)"/>
+        <img id="output" src="" style=" height: 300px; width: 400px; object-fit: contain;"/>
+    </div>
+</body>
+<script>
+    function Load_File(event){
+        var Image_Type = event.target.files[0].type;
+        var Image_Type_Split = Image_Type.split('/');
+        var Image_Ext = Image_Type_Split[1];
+
+        if (Image_Ext == 'jpg' || Image_Ext == 'jpeg' || Image_Ext == 'gif' || Image_Ext == 'png') {
+                    var Reader = new FileReader();
+                    Reader.onload = function(){
+                        var Output = document.getElementById('output');
+                        Output.src = Reader.result;
+                    }
+                    Reader.readAsDataURL(event.target.files[0]);
+        } else {
+            // document.getElementById('Output').style ="display : none;"; Error
+            alert("Upload a valid format as jpg,jpeg,gif,png")
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+                <label>Enter the text :</label>
+                <textarea placeholder="Enter text" rows="5" cols="25" id="Text"></textarea>
+        </div>
+        <input type="button" value="Get Eail" onclick="Get_Email()">
+        <input type="button" value="Get Name" onclick="Get_Name()">
+        <input type="button" value="Get Url" onclick="Get_URl()">
+    </body>
+    <script>
+
+        function Get_Email(){
+
+            var Text = document.getElementById("Text").value;
+            var Split = Text.split(" ");
+
+            var Mail_Format = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var Validate_Mail;
+            var Emails =[];
+            var Unique_Emails =[];
+
+            for(let i=0; i<Split.length; i++){
+
+                Validate_Mail = Mail_Format.test(Split[i]);
+
+                if(Validate_Mail == true) {
+                    Emails.push(Split[i]);
+                }
+            }
+
+            for(i=0; i<Emails.length;i++){
+                if(Unique_Emails.includes(Emails[i])== false){
+                    Unique_Emails.push(Emails[i]);
+                }
+            }
+            console.log(Unique_Emails);
+            return(Unique_Emails);
+        }
+
+        function Get_URl() {
+            var Text = document.getElementById("Text").value;
+            var Split_Text = Text.split(" ");
+            var URL_Format = /^(https?|ftp):\/\/(?:www\.)?[\w-]+\.\w{2,}(?:\.\w+)?(?:\/[^\s]*)?$/;
+            var URL = [];
+            
+            console.log(Split_Text);
+            
+            for (let i = 0; i < Split_Text.length; i++) {
+                var Matched_URL = URL_Format.test(Split_Text[i]);
+                if (Matched_URL == true) {
+                    URL.push(Split_Text[i]);
+                }
+            }
+            
+            console.log(URL);
+        }
+
+        function Get_Name(){
+            var Text = document.getElementById("Text").value;
+            var Split = Text.split(" ");       
+            var Mail_Format = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var Validate_Mail;
+            var Emails =[];
+            var Unique_Emails =[];
+            var Parts;
+            var Name_By_Email=[];
+
+            for(let i=0; i<Split.length; i++){
+        
+                Validate_Mail = Mail_Format.test(Split[i]);
+        
+                if(Validate_Mail == true) {
+                    Emails.push(Split[i]);
+                }
+            }
+
+            for(let i=0; i<Emails.length;i++){
+                if(Unique_Emails.includes(Emails[i])== false){
+                    Unique_Emails.push(Emails[i]);
+                }
+            }
+
+            for (let i = 0; i < Unique_Emails.length; i++) {
+                 Parts = Unique_Emails[i].split('@');
+                 Name_By_Email.push(Parts[0]);
+            }
+            var Name=[];
+            for(let i=0; i<Name_By_Email.length; i++){
+                if(Name_By_Email[i].length<25){
+                    Name.push(Name_By_Email[i]);
+                } else{
+                    Name.push(Name_By_Email[i].substr(0,25)+"..");
+                }
+            }
+            console.log("Names--->",Name.substr(0,25));
+        }
+    </script>
+</html>
+
+
+
+
+loremippsum venky@yopmail.com testing javaScrpt Split,Substr and Regex operation bala@yopmail.com it will include or exclude raju@yopmail.com loremippsum venky@yopmail.com testing javaScrpt Split,Substr and Regex operation abcdefghiklmnopqrstuvwxyzasdf@yopmail.com http:www.d1.com http:www.d2.com http:www.d2.com http:www.d34.com http:www.d5.com
+<!-- ftp://ftp.example.net http://127.0.0.1:8080 http://example.co.uk https://www.sub.domain.com ftp://ftp-server.example.net http://localhost http://www.example.com/path https://www.example.com/path/to/page ftp://ftp.example.com/file.txt http://sub.domain.example.com https://www.example.com/page.html ftp://ftp.server.example.org/directory http://sub.example.co.uk -->

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Email Validate</title>
+    </head>
+<body>
+    <div class="Email">
+        <label>Email :</label>
+        <input type="email" id="Email">
+    </div>
+    <input type="button" value="SUBMIT" onclick="Validate()">
+</body>
+<script>
+    function Validate(){
+        var Mail_Format = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        var Email = document.getElementById("Email").value;
+        var Validate_Mail = Mail_Format.test(Email);// returns boolean value
+        var Name_By_Email = Email.split('@');
+
+        if(Validate_Mail == true) {
+            console.log("OK");
+        } else {
+            console.log("Not OK");
+        }
+        console.log(Name_By_Email);
+        console.log("Name is-----> ",Name_By_Email[0]);
+    }
+</script>
+</html>

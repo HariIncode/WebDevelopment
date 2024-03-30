@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+        </div>
+            <label>Email :</label>
+            <input type="email" id="Email">
+            <input type="button" value="Submit" onclick="Validate()">
+        </div>
+    </body>
+    <script>
+        function Validate() {
+            var Email = document.getElementById("Email").value;
+            if (Email) {
+                localStorage.setItem("User_Email",Email);
+                window.location.href = 'next.html';
+            }
+        }
+    </script>
+</html>

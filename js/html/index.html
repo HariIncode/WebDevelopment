@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="../css/style.css" rel="stylesheet"/>
+        <title>Login Form</title>
+    </head>
+    <body>
+        <section>
+            <h1>JavaScript Example</h1>
+                <form>
+                    <div class="box">
+                        <div class="Name">
+                            <label>Firstname<span>*</span> :</label>
+                            <input type="text" maxlength="26" placeholder="Enter Firstname" id="Firstname"/>
+                            <label id="Firstname_Error">Enter Firstname</label>
+                            <label id="Firstname_Length_Error">Field Must Contain Atleast 3 Character</label>
+                        </div>
+                        <div>
+                            <label>Lastname :</label>
+                            <input type="text" id="Lastname" placeholder="Optional">
+                        </div>
+                        <div>
+                            <label>Email :</label>
+                            <input type="email" id="Email" placeholder="Enter Email">
+                            <label id="Email_Error">Enter Email</label>
+                            <label id="Valid_Email_Error">Enter a valid Email Format</label>
+                        </div>
+                        <div>
+                            <label >Country :</label>
+                            <select id="Country" onchange="Selected_Country(event)">
+                                <option value="">--SELECT--</option>
+                                <option value="Ind">Ind</option>
+                                <option value="Pak">Pak</option>
+                                <option value="Aus">Aus</option>
+                                <option value="Japan">Japan</option>
+                            </select>
+                            <div class="Flag">
+                                <img src="../img/India Flag .jpg" id="Ind_Img"/>
+                                <img src="../img/Pak.jpg" style="display: none;" id="Pak_Img"/>
+                                <img src="../img/Aus.jpg" style="display: none;" id="Aus_Img"/>
+                                <img src="../img/Japan.jpg" style="display: none;" id="Japan_Img"/>
+                            </div>
+                        </div>
+                        <div class="Password">
+                            <label>Password :</label>
+                            <input type="password" placeholder="Enter Your Password" id="Password">
+                            <label id="Password_Error">Enter your password</label>
+                            <label id="Password_Length_Error">Password Must Contain 8 Charaters</label>
+                            <input value="SHOW" id="Show_Button" type="button" onclick="Change_Password_Type()">
+                        </div>
+                        <div>
+                            <label>Confirm Password :</label>
+                            <input type="password" placeholder="Re-Enter Your Password" id="Confirm_Password">
+                            <label id="Confirm_Password_Error">Re-Enter your password</label>
+                        </div>
+                        <input type="button" id="Submit" value="SUBMIT" onclick="Field_Check()">
+                    </div>
+                <form>
+        </section>
+    </body>
+    <script>
+        function Field_Check(){
+            var Firstname = document.getElementById('Firstname').value;
+            var Lastname = document.getElementById('Lastname').value;
+            var Email = document.getElementById('Email').value;
+            var Password = document.getElementById('Password').value;
+            var Confirm_Password = document.getElementById('Confirm_Password').value;
+            // var i,Emp_Info = [
+            //     {
+            //         name : 'Hari',
+            //         salary : 70000,
+            //         gender : 'Male',
+            //         desigination : 'IT'
+            //     },
+            //     {
+            //         name : 'Jeeva',
+            //         salary : 65000,
+            //         gender : 'Male',
+            //         desigination : 'NON-IT'
+            //     },
+            //     {
+            //         name : 'Priya',
+            //         salary : 80000,
+            //         gender : 'Female',
+            //         desigination : 'IT'
+            //     },
+            //     {
+            //         name : 'Mubeena',
+            //         salary : 75000,
+            //         gender : 'Female',
+            //         desigination : 'NON-IT'
+            //     },
+            //     {
+            //         name : 'Prasath',
+            //         salary : 55000,
+            //         gender : 'Male',
+            //         desigination : 'IT'
+            //     },
+            //     {
+            //         name : 'Yuvashree',
+            //         salary : 75000,
+            //         gender : 'Female',
+            //         desigination : 'NON-IT'
+            //     }
+            // ]
+            // var Emp_Female = [];
+            // var Emp_Male = [];
+
+            // console.log("Firstname-->>",Firstname);
+            // console.log("Firstname-->>",Firstname.length);
+            // console.log("Firstname_Trim-->>",Firstname.trim().length);
+            // console.log("Lastname-->>",Lastname);
+            // console.log("Email-->>",Email);
+            // console.log("Password-->>",Password);
+            // console.log("Confirm_Password-->>",Confirm_Password);
+
+            // Firstname Validation
+            if(Firstname){
+                if(Firstname.trim().length < 3){
+                    document.getElementById('Firstname').style="border:1px solid red";
+                    document.getElementById('Firstname_Length_Error').style="display: block; color: red;";
+                } else {
+                    document.getElementById('Firstname').style="border:1px solid green";
+                    document.getElementById('Firstname_Length_Error').style="display: none;";
+                }
+                document.getElementById('Firstname_Error').style="display:none";
+            } else{
+                document.getElementById('Firstname').style="border:1px solid red";
+                document.getElementById('Firstname_Error').style="display:block; color: red;";
+            }
+
+            // Password Validation
+            if (Password) {
+                if(Password == Confirm_Password){
+                    console.log("Password OK");
+                } 
+                else {
+                    console.log("Re-Enter the Password!");
+                }
+            }
+
+            // for(i=0;i<Emp_Info.length;i++){
+            //     if(Emp_Info[i].gender == 'Male'){
+            //         Emp_Male.push(Emp_Info[i].name);
+            //     } else {
+            //         Emp_Female.push(Emp_Info[i].name);
+            //     }
+            // }
+            // console.log(Emp_Male);
+            // console.log(Emp_Female);
+        }
+
+        function Selected_Country(event){
+            var Selected_Country = event.target.value;
+            console.log('Selected Country-->',Selected_Country);
+
+            if(Selected_Country == 'Ind'){
+                document.getElementById('Ind_Img').style="display : block;";
+                document.getElementById('Pak_Img').style="display : none;";
+                document.getElementById('Aus_Img').style="display : none;";
+                document.getElementById('Japan_Img').style="display : none;";
+            } else if(Selected_Country == 'Pak'){
+                document.getElementById('Pak_Img').style="display : block;";
+                document.getElementById('Ind_Img').style="display : none;";
+                document.getElementById('Aus_Img').style="display : none;";
+                document.getElementById('Japan_Img').style="display : none;";
+            } else if(Selected_Country == 'Aus'){
+                document.getElementById('Aus_Img').style="display : block;";
+                document.getElementById('Ind_Img').style="display : none;";
+                document.getElementById('Pak_Img').style="display : none;";
+                document.getElementById('Japan_Img').style="display : none;";
+            } else if(Selected_Country == ''){
+                document.getElementById('Japan_Img').style="display : none;";
+                document.getElementById('Ind_Img').style="display : none;";
+                document.getElementById('Aus_Img').style="display : none;";
+                document.getElementById('Pak_Img').style="display : none;";
+            } else {
+                document.getElementById('Japan_Img').style="display : block;";
+                document.getElementById('Ind_Img').style="display : none;";
+                document.getElementById('Aus_Img').style="display : none;";
+                document.getElementById('Pak_Img').style="display : none;";
+            }
+        }
+
+        function Change_Password_Type(){
+            if (Password.type === "password") {
+                Password.type = "text";
+            } else {
+                Password.type = "password";
+            }
+        }
+    </script>
+</html>

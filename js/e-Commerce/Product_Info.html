@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="Product_Info_Style.css" rel="stylesheet"/>
+    <title>Product Information</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <section class="Container">
+        <div class="Box">
+            <div>
+                <img src="" id="Output" style="display : block; height: 300px; width: 400px; object-fit: contain;"/>
+            </div>
+            <div class="quantity">
+                <label>Minimum Quantity :</label>
+                <input type="text" value="1" id="Min_Quantity" readonly/>
+                <label>Maximum Quantity :</label>
+                <input type="text" value="" id="Max_Quantity" readonly/>
+            </div>
+            <div class="select">
+                <label>Select Count :</label>
+                <input type="button" value="+" id="Add" onclick="Add_Quantity(event)"/>
+                <input type="text" value="" id="Quantity" />
+                <input type="button" value="-" id="Reduse" onclick="Reduse_Quantity(event)"/>
+            </div>
+            <div class="Total">
+                <label>Total Price :</label>
+                <input type="text" value="" id="Total_Price" readonly/>
+            </div>
+            <input type="button" id="Add_To_Cart" value="Add to Cart" onclick="Add_To_Cart()"/>
+        </div>
+    </section>
+</body>
+<script>
+    var Quantity;
+    var Add;
+    var Reduse;
+    var Product_Name = localStorage.getItem('Product_Name');
+    var Product_Description = localStorage.getItem('Product_Description');
+    var Product_Image = localStorage.getItem('Product_Image');
+    var Product_Price = localStorage.getItem('Product_Price');
+    var Product_Discount = localStorage.getItem('Product_Discount');
+    var Discount_Value = localStorage.getItem('Discount_Value');
+    var Selling_Price = localStorage.getItem('Selling_Price');
+    var Product_Quantity = localStorage.getItem('Product_Quantity');
+
+    var Selected_Quantity = document.getElementById('Quantity').value;
+    var Total_Price = document.getElementById('Total_Price')
+
+    window.onload = function() {
+        var Image = document.getElementById('Output');
+
+        if(Product_Image){
+            Image.src = Product_Image;
+        }
+
+        var Quantity = document.getElementById('Max_Quantity');
+        Quantity.value=Product_Quantity;
+    }
+
+
+    function Add_Quantity(event){
+        Quantity = event.target.value;
+        var Count = Selected_Quantity;
+        console.log(Selected_Quantity);
+        if (Selected_Quantity < Product_Quantity) {
+            Count++;
+            Selected_Quantity=Count;
+            document.getElementById('Quantity').value=Count;
+        }
+        console.log(Selling_Price);
+        var Total_Price_Calculator = (Selling_Price*Quantity);
+        Total_Price.value=Total_Price_Calculator;
+    }
+    function Reduse_Quantity(event){
+        Quantity = document.getElementById('Quantity').value;
+        var Count = Quantity;
+
+        if (Quantity > 0) {
+            Count--;
+            Quantity.value=Count;
+            document.getElementById('Quantity').value=Count;
+        }
+    }
+
+    function Add_To_Cart(){
+        window.location.href = 'Cart_Page.html';
+    }
+</script>
+</html>

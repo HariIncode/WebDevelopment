@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: darkgrey;
+}
+h1{
+    text-align: center;
+    position: relative;
+    top: 30px;
+    font-size: 45px;
+    font-family: math;
+    font-weight: lighter;
+}
+form{
+    background-color: antiquewhite;
+    line-height: 2;
+    text-align: left;
+    width: min-content;
+    height: min-content;
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+    top: 80px;
+}
+input {
+    width: 370px;
+    height: 25px;
+}
+
+.box{
+    padding: 5px 20px;
+}
+
+#Name_Error{
+    color: red;
+    display: none;
+}
+#Description_Error{
+    color: red;
+    display: none;
+}
+#Image_Error{
+    color: red;
+    display: none;
+}
+#Image_Type_Error{
+    color: red;
+    display: none;
+}
+#Orginal_Price_Error{
+    color: red;
+    display: none;
+}
+#Discount_Price_Error{
+    color: red;
+    display: none;
+}
+#Quantity_Error{
+    color: red;
+    display: none;
+}
+#Maximum_Quantity_Error{
+    color: red;
+    display: none;
+}
+
+#Percentage{
+    width: 35%;
+}
+#Flat{
+    width: 35%;
+}
+#Description{
+    display: block;
+    width: -webkit-fill-available;
+}
+#Image{
+    display: block;
+    position: relative;
+    left: 30%;
+}
+#Get_Discount_Value{
+    /* display: none; */
+    width: 180px;
+}
+#Sales_Price{
+    display: inline-block;
+    width: 270px;
+}
+#Quantity{
+    display: inline-block;
+    width: 280px;
+}
+#Discount_Value{
+    display: none;
+}
