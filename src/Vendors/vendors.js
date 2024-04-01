@@ -1,0 +1,13 @@
+function Vendors(){
+    return(
+        <>
+        <div className="continer-fluid">
+            <h1 className="nt-4">
+                Vendors
+            </h1>
+        </div>
+        </>
+    )
+}
+
+export default Vendors;
